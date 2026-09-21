@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="AV Studio creates beautiful photographs, films, wedding memories, designs, and custom photo frames." />
+	<title>AV Studio | Photos, Films & Video Editing & Frames</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<style>
+		:root {
+			--ink: #f7f0df;
+			--muted: #aab2bb;
+			--cream: #0d1b2a;
+			--paper: #16283a;
+			--terracotta: #e0b45a;
+			--gold: #d9a441;
+			--sage: #20384d;
+			--line: rgba(247, 240, 223, .17);
+			--display: "Cormorant Garamond", Georgia, serif;
+			--body: "Manrope", Arial, sans-serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; color: var(--ink); background: var(--cream); font-family: var(--body); line-height: 1.55; }
+		a { color: inherit; text-decoration: none; }
+		img { display: block; max-width: 100%; }
+		button, input, select, textarea { font: inherit; }
+		.wrap { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+		.eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--terracotta); font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+		.eyebrow::before { content: ""; width: 30px; height: 2px; background: currentColor; }
+		h1, h2, h3 { font-family: var(--display); line-height: 1.05; }
+		h1, h2, h3, p { margin-top: 0; }
+		h2 { margin-bottom: 0; font-size: clamp(2.5rem, 5vw, 4.8rem); letter-spacing: -.055em; }
+		.button { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--terracotta); padding: 12px 18px; border-radius: 3px; font-size: .82rem; font-weight: 700; transition: transform .2s, background .2s; }
+		.button:hover { transform: translateY(-3px); }
+		.button-dark { background: var(--gold); color: #17130d; border-color: var(--gold); }
+		.button-light { background: transparent; color: var(--ink); }
+
+		header { position: sticky; top: 0; z-index: 5; background: rgba(17, 16, 15, .9); border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
+		.nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+		.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 1.26rem; font-weight: 700; }
+		.brand-mark { display: grid; place-items: center; width: 39px; height: 39px; padding: 4px; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); }
+		.brand-mark svg { width: 100%; height: 100%; overflow: visible; }
+		.brand-name { font-weight: 700; letter-spacing: .01em; }
+		.nav-links { display: flex; gap: 25px; color: var(--muted); font-size: .82rem; }
+		.nav-links a:hover { color: var(--terracotta); }
+		.nav-call { border-bottom: 1px solid var(--terracotta); padding-bottom: 3px; color: var(--terracotta); font-size: .8rem; font-weight: 700; }
+
+		.hero { padding: 76px 0 88px; overflow: hidden; }
+		.hero-grid { display: grid; grid-template-columns: .94fr 1.06fr; align-items: center; gap: 70px; }
+		h1 { max-width: 610px; margin: 20px 0 22px; font-size: clamp(3.6rem, 7vw, 7.3rem); letter-spacing: -.07em; }
+		h1 em { color: var(--terracotta); font-style: normal; }
+		.hero-copy { max-width: 470px; color: var(--muted); font-size: 1.04rem; }
+		.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 29px; }
+		.hero-art { position: relative; min-height: 550px; }
+		.hero-art::before { content: ""; position: absolute; inset: 26px -20px 0 16px; background: var(--gold); border-radius: 48% 48% 4px 4px; transform: rotate(4deg); }
+		.hero-art img { position: relative; width: 84%; height: 550px; margin-left: auto; object-fit: cover; border-radius: 48% 48% 4px 4px; filter: saturate(.72) contrast(1.06); }
+		.hero-note { position: absolute; right: -3px; bottom: 30px; width: 150px; height: 150px; display: grid; place-items: center; padding: 28px; border-radius: 50%; background: var(--gold); color: #17130d; text-align: center; font-family: var(--display); font-size: 1.18rem; line-height: 1.05; transform: rotate(9deg); }
+		.hero-upload { display: none; }
+
+		.section { padding: 96px 0; border-top: 1px solid var(--line); }
+		.section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 38px; }
+		.section-head p { max-width: 330px; margin: 0; color: var(--muted); }
+		.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+		.service { min-height: 250px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; background: var(--paper); border: 1px solid var(--line); }
+		.service:nth-child(2) { background: var(--sage); }
+		.service:nth-child(3) { background: #3a3020; color: var(--ink); }
+		.service:nth-child(4) { background: #25231f; color: var(--ink); }
+		.service-number { font-size: .74rem; opacity: .6; }
+		.service h3 { margin: 0 0 10px; font-size: 1.65rem; letter-spacing: -.045em; }
+		.service p { margin: 0; font-size: .87rem; opacity: .72; }
+
+		.gallery { display: grid; grid-template-columns: 1.13fr .87fr; gap: 12px; }
+		.gallery-side { display: grid; grid-template-rows: 1fr 1fr; gap: 12px; }
+		.gallery-item { position: relative; min-height: 540px; overflow: hidden; background: var(--ink); }
+		.gallery-side .gallery-item { min-height: 264px; }
+		.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+		.gallery-item:hover img { transform: scale(1.045); }
+		.gallery-item::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
+		.gallery-label { position: absolute; z-index: 1; left: 23px; right: 23px; bottom: 20px; color: #fff; }
+		.gallery-label span { color: var(--gold); font-size: .7rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+		.gallery-label h3 { margin: 7px 0 0; font-size: 1.8rem; }
+		.gallery-more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+		.gallery-more .gallery-item { min-height: 300px; }
+		.gallery-extra { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+		.gallery-extra .gallery-item { min-height: 350px; }
+		.image-upload { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; padding: 8px 11px; border: 1px solid rgba(247,240,223,.7); border-radius: 3px; color: var(--ink); background: rgba(13,27,42,.82); font-size: .72rem; font-weight: 700; cursor: pointer; }
+		.image-upload:hover { background: var(--gold); color: #17130d; }
+		.image-upload input { display: none; }
+
+		.contact { background: #07121e; color: var(--ink); }
+		.contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 75px; align-items: start; }
+		.contact h2 { color: var(--ink); }
+		.contact .eyebrow { color: var(--gold); }
+		.contact-intro { color: rgba(255,253,248,.66); }
+		.details { display: grid; gap: 16px; margin-top: 37px; color: rgba(255,253,248,.68); font-size: .9rem; }
+		.details strong { display: block; margin-bottom: 2px; color: var(--gold); font-family: var(--display); font-size: 1.12rem; }
+		.contact-form { padding: 29px; background: var(--paper); color: var(--ink); }
+		.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+		.field { display: grid; gap: 6px; }
+		.full { grid-column: 1 / -1; }
+		label { font-size: .72rem; font-weight: 700; }
+		input, select, textarea { width: 100%; padding: 12px; border: 1px solid rgba(23, 19, 13, .2); border-radius: 2px; outline: none; background: #f8f3e9; color: #17130d; }
+		textarea { min-height: 108px; resize: vertical; }
+		input:focus, select:focus, textarea:focus { border-color: var(--terracotta); box-shadow: 0 0 0 3px rgba(198,93,59,.13); }
+		.contact-form .button { width: 100%; justify-content: center; margin-top: 19px; }
+		.form-status { min-height: 22px; margin: 12px 0 0; color: #45805b; font-size: .83rem; font-weight: 700; }
+
+		.visit { display: grid; grid-template-columns: .8fr 1.2fr; gap: 12px; }
+		.visit-copy { padding: 36px; background: #20384d; color: var(--ink); }
+		.visit-copy h2 { max-width: 390px; }
+		.visit-copy p { max-width: 300px; margin: 23px 0; color: rgba(23,23,22,.72); }
+		.map { width: 100%; min-height: 340px; border: 0; filter: grayscale(1) contrast(.9); }
+		footer { padding: 28px 0; border-top: 1px solid var(--line); }
+		.footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .78rem; }
+
+		@media (max-width: 850px) {
+			.nav-links { display: none; }
+			.hero-grid, .contact-grid, .visit { grid-template-columns: 1fr; }
+			.hero { padding-top: 55px; }
+			.hero-art { min-height: 430px; margin-top: 16px; }
+			.hero-art img { height: 430px; }
+			.services { grid-template-columns: 1fr 1fr; }
+			.contact-grid { gap: 40px; }
+		}
+		@media (max-width: 570px) {
+			.wrap { width: min(100% - 28px, 1160px); }
+			.nav { min-height: 66px; }
+			.nav-call { display: none; }
+			h1 { font-size: clamp(3.3rem, 17vw, 5.4rem); }
+			.hero-art { min-height: 350px; }
+			.hero-art img { width: 90%; height: 350px; }
+			.hero-note { width: 112px; height: 112px; padding: 19px; font-size: .95rem; }
+			.section { padding: 70px 0; }
+			.section-head { display: block; }
+			.section-head p { margin-top: 17px; }
+			.services, .gallery, .gallery-more, .gallery-extra { grid-template-columns: 1fr; }
+			.service { min-height: 200px; }
+			.gallery-item, .gallery-side .gallery-item { min-height: 320px; }
+			.gallery-side { grid-template-rows: 1fr 1fr; }
+			.contact-form { padding: 20px 16px; }
+			.form-grid { grid-template-columns: 1fr; }
+			.full { grid-column: auto; }
+			.footer-row { display: grid; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="wrap nav">
+			<a class="brand" href="#home" aria-label="AV Studio home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" role="img"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 32 19 15h3l7 17M15 26h11M28 15l6 17 6-17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="brand-name">AV Studio</span></a>
+			<nav class="nav-links" aria-label="Main navigation"><a href="#services">Services</a><a href="#work">Our work</a><a href="#contact">Contact</a><a href="#visit">Visit us</a></nav>
+			<a class="nav-call" href="tel:+919517361635">Call +91 95173 61635</a>
+		</div>
+	</header>
+
+	<main id="home">
+		<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">Photo, film & design studio</span><h1>Keep the moment. <em>Make it yours.</em></h1><p class="hero-copy">AV Studio turns real moments into photographs, films, designs, and frames you will want to keep close. From a wedding day to a new business launch, we make every detail look unforgettable.</p><div class="hero-actions"><a class="button button-dark" href="#contact">Book a project <span aria-hidden="true">-></span></a><a class="button button-light" href="#work">See our work <span aria-hidden="true">-></span></a></div></div><div class="hero-art"><img id="hero-preview" src="d:\AV\Av studio.jpeg" alt="Professional photo and video editing studio workspace" /><div class="hero-note">Memories made beautifully</div><label class="image-upload hero-upload" for="hero-image-upload">Upload hero image<input id="hero-image-upload" type="file" accept="image/*" /></label></div></div></section>
+
+		<section class="section" id="services"><div class="wrap"><div class="section-head"><div><span class="eyebrow">What we do</span><h2>One studio. Every way to tell your story.</h2></div><p>Thoughtful creative work for people, families, celebrations, and businesses in the city and beyond.</p></div><div class="services"><article class="service"><span class="service-number">01 / 04</span><div><h3>Photo editing</h3><p>Natural retouching, colour correction, restoration, and professional album finishing.</p></div></article><article class="service"><span class="service-number">02 / 04</span><div><h3>Video editing</h3><p>Wedding films, reels, highlights, music videos, and clean edits ready to share.</p></div></article><article class="service"><span class="service-number">03 / 04</span><div><h3>Wedding stories</h3><p>Photography and short films that preserve the laughter, rituals, and little in-between moments.</p></div></article><article class="service"><span class="service-number">04 / 04</span><div><h3>Design & framing</h3><p>Invitations, photo designs, albums, enlargements, and custom frames made to last.</p></div></article></div></div></section>
+
+		<section class="section" id="work"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Studio samples</span><h2>Made for the moments that matter.</h2></div><p>A glimpse at the kind of memories, portraits, and visual details we love to create.</p></div><div class="gallery"><article class="gallery-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=85" alt="Photographer preparing a professional photo shoot" /><div class="gallery-label"><span>Photo shoot</span><h3>Every portrait has a point of view.</h3></div></article><div class="gallery-side"><article class="gallery-item"><img src="d:\AV\image genaration.jpeg" alt="Multiple framed photographs displayed together on a wall" /><div class="gallery-label"><span>Photo framing</span><h3>Many memories, one beautiful wall.</h3></div></article><article class="gallery-item" id="upload-card"><img id="upload-preview" src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=900&q=85" alt="Friends laughing together in a warm portrait" /><div class="gallery-label"><span>Upload your photo</span><h3>Show us your favorite frame.</h3><label class="image-upload" for="image-upload">Upload image<input id="image-upload" type="file" accept="image/*" /></label></div></article></div></div><div class="gallery-more"><article class="gallery-item"><img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=900&q=85" alt="Photographer taking a professional portrait of a young boy" /><div class="gallery-label"><span>Boy photo shoot</span><h3>Capturing his best moment.</h3></div></article><article class="gallery-item"><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=900&q=85" alt="Video editor working at a computer workstation" /><div class="gallery-label"><span>Video editing</span><h3>Stories that move.</h3></div></article><article class="gallery-item"><img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=85" alt="Computer monitor showing a video editing workspace" /><div class="gallery-label"><span>Editing screen</span><h3>Every cut makes the story stronger.</h3></div></article></div><div class="gallery-extra"><article class="gallery-item"><img src="https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?auto=format&fit=crop&w=1000&q=85" alt="Camera and lens prepared for a professional photo shoot" /><div class="gallery-label"><span>Photo shooting</span><h3>Ready for the perfect click.</h3></div></article><article class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=85" alt="Wedding photography and celebration inside a decorated hall" /><div class="gallery-label"><span>Wedding hall shoot</span><h3>Celebrations captured beautifully.</h3></div></article></div></div></section>
+
+		<section class="section contact" id="contact"><div class="wrap contact-grid"><div><span class="eyebrow">Start a conversation</span><h2>Have a story to make?</h2><p class="contact-intro">Tell us what you are planning. We will help you choose the right service, timeline, and finish for it.</p><div class="details"><div><strong>Call or WhatsApp</strong>+91 95173 61635</div><div><strong>Email</strong>atharvavision@gmail.com</div><div><strong>Studio hours</strong>Monday - Saturday, 10:00 AM - 7:00 PM</div></div></div><div class="contact-form"><form id="contact-form"><div class="form-grid"><div class="field"><label for="name">Your name</label><input id="name" name="name" required placeholder="Your name" /></div><div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" required placeholder="Your phone number" /></div><div class="field"><label for="service">I am interested in</label><select id="service" name="service" required><option value="">Choose a service</option><option>Photo editing</option><option>Video editing</option><option>Wedding photography or film</option><option>Photo framing booking</option><option>Photo design</option><option>Something else</option></select></div><div class="field"><label for="date">Preferred date</label><input id="date" name="date" type="date" /></div><div class="field"><label for="slot">Preferred booking slot</label><select id="slot" name="slot"><option value="">Choose a time slot</option><option>10:00 AM - 12:00 PM</option><option>12:00 PM - 2:00 PM</option><option>2:00 PM - 4:00 PM</option><option>4:00 PM - 7:00 PM</option></select></div><div class="field full"><label for="message">Tell us a little about it</label><textarea id="message" name="message" required placeholder="What would you like us to create?"></textarea></div></div><button class="button button-dark" type="submit">Send inquiry <span aria-hidden="true">-></span></button><p class="form-status" id="form-status" role="status" aria-live="polite"></p></form></div></div></section>
+
+		<section class="section" id="visit"><div class="wrap visit"><div class="visit-copy"><span class="eyebrow">Photo framing studio</span><h2>Give your favorite moments a beautiful home.</h2><p>Bring your photos to AV Studio for custom framing, clean mounting, and finishes made to match your space.</p><p><strong>Framing services</strong><br />Custom photo sizes and enlargements<br />Classic, modern, and premium frames<br />Mounting, glass, and ready-to-hang finishing</p><p><strong>AV Studio</strong><br />Khukhundu Chauraha Main Road<br />Deoria, Salempur<br />Near Honda Agency &amp; Bypass Road, Khukhundu</p><a class="button button-dark" href="https://www.google.com/maps/search/?api=1&amp;query=CR2P%2B97%20Khukhundu%2C%20Uttar%20Pradesh" target="_blank" rel="noreferrer">Open in Maps <span aria-hidden="true">-></span></a></div><iframe class="map" title="AV Studio photo framing studio location map" src="https://www.google.com/maps?q=CR2P%2B97%20Khukhundu%2C%20Uttar%20Pradesh&amp;output=embed" loading="lazy" allowfullscreen></iframe></div></section>
+	</main>
+
+	<footer><div class="wrap footer-row"><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" role="img"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 32 19 15h3l7 17M15 26h11M28 15l6 17 6-17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="brand-name">AV Studio</span></div><span>© <span id="year"></span> AV Studio. All memories welcome.</span><span>atharvavision@gmail.com</span></div></footer>
+	<script>
+		document.getElementById("year").textContent = new Date().getFullYear();
+		document.getElementById("contact-form").addEventListener("submit", function (event) {
+			event.preventDefault();
+			const status = document.getElementById("form-status");
+			const button = this.querySelector("button");
+			button.disabled = true;
+			button.textContent = "Inquiry received";
+			status.textContent = "Thank you. AV Studio contact Number +91 95173 61635 Please call or WhatsApp.";
+			this.reset();
+		});
+		document.getElementById("image-upload").addEventListener("change", function () {
+			const file = this.files[0];
+			if (file) document.getElementById("upload-preview").src = URL.createObjectURL(file);
+		});
+		document.getElementById("hero-image-upload").addEventListener("change", function () {
+			const file = this.files[0];
+			if (file) document.getElementById("hero-preview").src = URL.createObjectURL(file);
+		});
+		const birthdayCard = document.querySelector(".gallery-more .gallery-item:nth-child(2)");
+		const birthdayImage = birthdayCard.querySelector("img");
+		birthdayImage.src = "https://images.unsplash.com/photo-1513159446162-54eb8bdaa79b?auto=format&fit=crop&w=1000&q=85";
+		birthdayImage.alt = "Birthday photo shoot with cake and celebration decorations";
+		birthdayCard.querySelector(".gallery-label span").textContent = "Birthday shoot";
+		birthdayCard.querySelector(".gallery-label h3").textContent = "Celebrate every candle and smile.";
+		document.querySelector(".hero-upload")?.remove();
+	</script>
+</body>
+</html>
